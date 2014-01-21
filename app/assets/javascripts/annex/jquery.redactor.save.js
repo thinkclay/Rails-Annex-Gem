@@ -8,6 +8,29 @@ RedactorPlugins.save = {
     });
     this.buttonAddSeparator();
     this.buttonSetRight('save');
+
+    save_shortcut = $.proxy(function(e){
+      var editor_active = this.getEditor().hasClass('redactor_editor');
+
+      if ( editor_active )
+        this.saveContent();
+
+      return editor_active;
+    }, this);
+
+    $(document).keydown(function(e){
+      if ((e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey))
+      {
+        if ( save_shortcut() )
+        {
+          e.preventDefault();
+
+          return false;
+        }
+      }
+
+      return true;
+    });
   },
   saveContent: function() {
 
