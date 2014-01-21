@@ -3,14 +3,14 @@ module Annex
   class ApplicationController < ::ApplicationController
     protect_from_forgery with: :null_session
 
-    before_filter :_authenticate!
-    before_filter :_authorize!
+    before_filter :annex_authenticate!
+    before_filter :annex_authorize!
 
-    def _authenticate!
+    def annex_authenticate!
       instance_eval &Annex::Config.authenticate_with
     end
 
-    def _authorize!
+    def annex_authorize!
       instance_eval &Annex::Config.authorize_with
     end
   end

@@ -153,7 +153,12 @@
 
 			buttonsCustom: {},
 			buttonsAdd: [],
-			buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'image', 'video', 'file', 'table', 'link', '|', 'alignment', '|', 'horizontalrule'], // 'underline', 'alignleft', 'aligncenter', 'alignright', 'justify'
+			buttons: [
+				'html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|',
+				'unorderedlist', 'orderedlist', 'outdent', 'indent', '|',
+				'image', 'video', 'file', 'table', 'link', '|',
+				'alignment', '|', 'horizontalrule'
+			], // 'underline', 'alignleft', 'aligncenter', 'alignright', 'justify'
 
 			activeButtons: ['deleted', 'italic', 'bold', 'underline', 'unorderedlist', 'orderedlist', 'alignleft', 'aligncenter', 'alignright', 'justify', 'table'],
 			activeButtonsStates: {
@@ -3062,7 +3067,12 @@
 			html = html.replace(/[\u200B-\u200D\uFEFF]/g, '');
 
 			var etagsInline = ["<b>\\s*</b>", "<b>&nbsp;</b>", "<em>\\s*</em>"]
-			var etags = ["<pre></pre>", "<blockquote>\\s*</blockquote>", "<dd></dd>", "<dt></dt>", "<ul></ul>", "<ol></ol>", "<li></li>", "<table></table>", "<tr></tr>", "<span>\\s*<span>", "<span>&nbsp;<span>", "<p>\\s*</p>", "<p></p>", "<p>&nbsp;</p>",  "<p>\\s*<br>\\s*</p>", "<div>\\s*</div>", "<div>\\s*<br>\\s*</div>"];
+			var etags = [
+				"<pre></pre>", "<blockquote>\\s*</blockquote>", "<dd></dd>", "<dt></dt>",
+				"<ul></ul>", "<ol></ol>", "<li></li>", "<table></table>", "<tr></tr>",
+				"<span>\\s*<span>", "<span>&nbsp;<span>", "<p>\\s*</p>", "<p></p>", "<p>&nbsp;</p>",
+				"<p>\\s*<br>\\s*</p>", "<div>\\s*</div>", "<div>\\s*<br>\\s*</div>"
+			];
 
 			if (this.opts.removeEmptyTags)
 			{
@@ -6830,7 +6840,7 @@
 				var formId = 'redactorUploadForm' + this.id,
 					fileId = 'redactorUploadFile' + this.id;
 
-				this.form = $('<form  action="' + this.uploadOptions.url + '" method="POST" target="' + name + '" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data" />');
+				this.form = $('<form action="'+this.uploadOptions.url+'" method="POST" target="'+name+'" name="'+formId+'" id="'+formId+'" enctype="multipart/form-data" />');
 
 				// append hidden fields
 				if (this.opts.uploadFields !== false && typeof this.opts.uploadFields === 'object')
@@ -6967,8 +6977,6 @@
 		},
 		dragUploadAjax: function(url, file, directupload, progress, e, uploadParam)
 		{
-
-
 			if (!directupload)
 			{
 				var xhr = $.ajaxSettings.xhr();

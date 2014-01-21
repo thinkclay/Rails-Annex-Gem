@@ -3,11 +3,6 @@ require_dependency "annex/application_controller"
 module Annex
   class BlocksController < ApplicationController
 
-    # GET /blocks/new
-    def new
-      @block = Block.new
-    end
-
     # POST /annex/blocks
     def create
       @block = Block.where(:route => params[:route]).first_or_create
@@ -26,11 +21,5 @@ module Annex
       end
     end
 
-    private
-
-      # Only allow a trusted parameter "white list" through.
-      def block_params
-        params.require(:block).permit(:route, :content)
-      end
   end
 end
