@@ -1,3 +1,3 @@
 module Annex
-  VERSION = "0.0.13"
+  VERSION = "0.0.28"
 end
