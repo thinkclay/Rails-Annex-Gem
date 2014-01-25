@@ -1,8 +1,15 @@
 module Annex
   module ViewHelpers
-    def annex_block(route, identifier, opts = {})
-      doc = Annex::Block.where(:route => route.to_s).first
-      content = doc[:content][identifier.to_s]
+    def annex_block(identifier, opts = {})
+      if opts.try(:route)
+        route = opts[:route]
+        opts[:route].delete
+      else
+        route = current_route
+      end
+
+      doc = Annex::Block.where(:route => route.to_s).first_or_create
+      content = doc[:content][identifier.to_s] || ''
 
       render partial: 'annex/block', locals: { content: content, route: route, identifier: identifier, opts: opts }
     end
