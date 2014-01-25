@@ -56,7 +56,7 @@ RedactorPlugins.save = {
       type:         'POST',
       url:          post_url,
       contentType:  'application/json',
-      data:         '{"route": "'+route+'", "content": {"'+identifier+'": "'+this.get()+'"} }',
+      data:         '{"route": "'+route+'", "content": {"'+identifier+'": "'+this.get().replace(/(['"])/g, "\\$1")+'"} }',
       success: callback,
       dataType: 'json'
     });
