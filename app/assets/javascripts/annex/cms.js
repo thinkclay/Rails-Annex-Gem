@@ -1,6 +1,13 @@
 $(function(){
   var post_url = '/annex/blocks';
 
+  $(window).keydown(function(e){
+    if ((e.which == '17') && (e.ctrlKey || e.metaKey))
+    {
+      $('.redactor').addClass('active');
+    }
+  });
+
   $('.redactor')
     .click(function(){
       if ( ! $(this).hasClass('redactor_editor') )
@@ -11,14 +18,5 @@ $(function(){
           toolbarFixed: false
         });
       }
-    })
-    // .blur(function(){
-    //   if ( $(this).hasClass('redactor_editor') )
-    //   {
-    //     var $this = $(this);
-
-    //     $this.redactor('saveContent');
-    //     setTimeout(function(){ $this.redactor('destroy'); }, 2000);
-    //   }
-    // });
+    });
 });

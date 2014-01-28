@@ -1,10 +1,10 @@
 .redactor {
-  border: 1px dotted #ddd;
   display: block;
+  min-height: 5px;
 
-  &:hover {
+  &:hover, &.active {
     cursor: pointer;
-    border-color: #aaa;
+    border: 1px dotted #ddd;
   }
 }
 
