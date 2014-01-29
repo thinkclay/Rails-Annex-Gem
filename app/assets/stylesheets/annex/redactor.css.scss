@@ -4,13 +4,13 @@
 
   &:hover, &.active {
     cursor: pointer;
-    border: 1px dotted #ddd;
+    box-shadow: inset 0 0 1px #ddd;
   }
 }
 
 .redactor.redactor_editor {
   transition: all 1s;
-  border-color: #ebb100;
+  box-shadow: inset 0 0 1px #ebb100;
 
   &:hover {
     cursor: text;
@@ -18,7 +18,7 @@
 }
 
 .redactor.redactor_editor.saved {
-  border-color: green;
+  box-shadow: inset 0 0 1px #30D522;
 }
 
 .clearfix {
@@ -52,18 +52,18 @@ body .redactor_box_fullscreen {
 }
 
 .redactor_box textarea {
+  border: none;
+  display: block;
   font-family: Menlo, Monaco, monospace, sans-serif;
   font-size: 13px;
-  overflow: auto;
-  resize: none;
   margin: 0;
-  padding: 0;
-  display: block;
-  position: relative;
-  z-index: 1004;
   outline: none;
-  border: none;
+  overflow: auto;
+  padding: 0;
+  position: relative;
+  resize: none;
   width: 100%;
+  z-index: 1004;
 }
 
 
@@ -76,9 +76,6 @@ body .redactor_box_fullscreen {
 .redactor_editor, .redactor_editor:focus {
   position: relative;
   outline: none;
-  box-shadow: none !important;
-  padding: 2px 5px !important;
-  margin: 0 !important;
   overflow: auto;
   white-space: normal;
 }

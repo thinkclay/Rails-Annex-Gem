@@ -110,6 +110,7 @@
 
 			linkAnchor: true,
 			linkEmail: true,
+			linkTooltip: true,
 			linkProtocol: 'http://',
 			linkNofollow: false,
 			linkSize: 50,
@@ -282,7 +283,8 @@
 					underline: 'Underline',
 					alignment: 'Alignment',
 					filename: 'Name (optional)',
-					edit: 'Edit'
+					edit: 'Edit',
+					title: 'Title'
 				}
 			}
 	};
@@ -5490,7 +5492,7 @@
 				this.insert_link_node = false;
 
 				var sel = this.getSelection();
-				var url = '', text = '', target = '';
+				var url = '', text = '', target = '', title = '';
 
 				var elem = this.getParent();
 				var par = $(elem).parent().get(0);
@@ -5504,6 +5506,7 @@
 					url = elem.href;
 					text = $(elem).text();
 					target = elem.target;
+					title = elem.title;
 
 					this.insert_link_node = elem;
 				}
@@ -5525,6 +5528,7 @@
 
 				if (this.opts.linkEmail === false) tabs.eq(1).remove();
 				if (this.opts.linkAnchor === false) tabs.eq(2).remove();
+
 				if (this.opts.linkEmail === false && this.opts.linkAnchor === false)
 				{
 					$('#redactor_tabs').remove();
@@ -5570,13 +5574,14 @@
 		linkProcess: function()
 		{
 			var tab_selected = $('#redactor_tab_selected').val();
-			var link = '', text = '', target = '', targetBlank = '';
+			var link = '', text = '', target = '', targetBlank = '', title = '';
 
 			// url
 			if (tab_selected === '1')
 			{
 				link = $('#redactor_link_url').val();
 				text = $('#redactor_link_url_text').val();
+				title = $('#redactor_link_url_title').val();
 
 				if ($('#redactor_link_blank').prop('checked'))
 				{
@@ -5605,10 +5610,16 @@
 			{
 				link = '#' + $('#redactor_link_anchor').val();
 				text = $('#redactor_link_anchor_text').val();
+				title = $('#redactor_link_anchor_title').val();
+			}
+
+			if (title != '')
+			{
+				title = ' title="'+title+'"';
 			}
 
 			text = text.replace(/<|>/g, '');
-			this.linkInsert('<a href="' + link + '"' + target + '>' + text + '</a>', $.trim(text), link, targetBlank);
+			this.linkInsert('<a href="'+link+'"'+target+title+'>'+text+'</a>', $.trim(text), link, targetBlank);
 
 		},
 		linkInsert: function (a, text, link, target)
@@ -6379,6 +6390,8 @@
 							+ '<input type="text" id="redactor_link_url" class="redactor_input"  />'
 							+ '<label>' + this.opts.curLang.text + '</label>'
 							+ '<input type="text" class="redactor_input redactor_link_text" id="redactor_link_url_text" />'
+							+ '<label>' + this.opts.curLang.title + '</label>'
+							+ '<input type="text" class="redactor_input redactor_link_url_title" id="redactor_link_url_title" />'
 							+ '<label><input type="checkbox" id="redactor_link_blank"> ' + this.opts.curLang.link_new_tab + '</label>'
 						+ '</div>'
 						+ '<div class="redactor_tab" id="redactor_tab2" style="display: none;">'
@@ -6392,6 +6405,8 @@
 							+ '<input type="text" class="redactor_input" id="redactor_link_anchor"  />'
 							+ '<label>' + this.opts.curLang.text + '</label>'
 							+ '<input type="text" class="redactor_input redactor_link_text" id="redactor_link_anchor_text" />'
+							+ '<label>' + this.opts.curLang.title + '</label>'
+							+ '<input type="text" class="redactor_input redactor_link_anchor_title" id="redactor_link_anchor_title" />'
 						+ '</div>'
 					+ '</form>'
 				+ '</section>'
