@@ -637,6 +637,9 @@ body .redactor_toolbar li a.redactor_btn_save { background-position: -650px; }
 }
 
 // Clips Plugin
+#clipsmodal, .redactor_clip {
+  display: none;
+}
 .redactor_clips_box
 {
   margin-left: 0;

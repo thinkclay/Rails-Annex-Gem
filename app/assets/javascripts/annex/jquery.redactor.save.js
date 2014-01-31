@@ -36,7 +36,8 @@ RedactorPlugins.save = {
 
     var post_url = '/annex/blocks',
         route = this.getEditor().attr('data-route'),
-        identifier = this.getEditor().attr('data-identifier');
+        identifier = this.getEditor().attr('data-identifier'),
+        html_content = {};
 
     var callback = $.proxy(function() {
       var $this = this;
@@ -49,14 +50,18 @@ RedactorPlugins.save = {
           next();
         });
 
-        setTimeout(function(){ $this.destroy(); }, 2000);
+      setTimeout(function(){ $this.destroy(); }, 2000);
     }, this);
+
+    html_content[identifier] = this.get();
 
     $.ajax({
       type:         'POST',
       url:          post_url,
-      contentType:  'application/json',
-      data:         '{"route": "'+route+'", "content": {"'+identifier+'": "'+this.get().replace(/(['"])/g, "\\$1")+'"} }',
+      data:         {
+        route: route,
+        content: html_content
+      },
       success: callback,
       dataType: 'json'
     });

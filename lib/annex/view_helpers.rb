@@ -12,13 +12,17 @@ module Annex
 
       doc = Annex::Block.where(:route => route.to_s).first_or_create
 
-      if doc.try(:content)
-        content = doc[:content][identifier.to_s] || ''
+      if doc.content
+        content = doc.content[identifier.to_s] || ''
       else
         content = ''
       end
 
       render partial: 'annex/block', locals: { content: content, route: route, identifier: identifier, opts: opts }
+    end
+
+    def annex_clips(clip)
+      render partial: 'annex/clips'
     end
 
     def current_route
