@@ -26,7 +26,7 @@ module Annex
     end
 
     def current_route
-      "#{params[:controller]}_#{params[:action]}".to_sym
+      "#{I18n.locale}_#{params[:controller]}_#{params[:action]}".to_sym
     end
   end
 end
