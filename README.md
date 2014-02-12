@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/annex-cms.png)](http://badge.fury.io/rb/annex-cms) [![Build Status](https://drone.io/github.com/unicorn/annex/status.png)](https://drone.io/github.com/unicorn/annex/latest)
+
 # Annex Gem for Rails 4.x
 
 There are dozens of different Content Management Systems out in the wild, but none of them really work will with existing proprietary applications. Annex aims to remedy that by being an extremely minimal, inline editor that requires only installion and view calls for multilingual support as well as robust and dynamic Content Management.
