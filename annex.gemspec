@@ -7,6 +7,7 @@ require "annex/version"
 Gem::Specification.new do |s|
   s.name        = "annex-cms"
   s.version     = Annex::VERSION
+  s.platform    = Gem::Platform::RUBY
   s.authors     = ["Clay McIlrath"]
   s.email       = ["thinkclay@gmail.com"]
   s.homepage    = "http://thinkclay.com"
