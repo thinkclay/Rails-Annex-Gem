@@ -7,7 +7,7 @@ There are dozens of different Content Management Systems out in the wild, but no
 ## Installation
 Include Annex in your Gemfile and Bundle:
 
-`gem 'annex'`
+`gem 'annex-cms'`
 
 add the engine to routes.rb
 
