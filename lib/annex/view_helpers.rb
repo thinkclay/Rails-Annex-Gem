@@ -3,6 +3,8 @@ require 'active_support/hash_with_indifferent_access'
 module Annex
   module ViewHelpers
     def annex_block(identifier, opts = {})
+      opts[:default] ||= ''
+
       if opts.try(:route)
         route = opts[:route]
         opts[:route].delete
@@ -13,9 +15,9 @@ module Annex
       doc = Annex::Block.where(:route => route.to_s).first_or_create
 
       if doc.content
-        content = doc.content[identifier.to_s] || ''
+        content = doc.content[identifier.to_s] || opts[:default]
       else
-        content = ''
+        content = opts[:default]
       end
 
       render partial: 'annex/block', locals: { content: content, route: route, identifier: identifier, opts: opts }
