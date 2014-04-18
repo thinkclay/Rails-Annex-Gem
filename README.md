@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/annex-cms.png)](http://badge.fury.io/rb/annex-cms) [![Build Status](https://drone.io/github.com/unicorn/annex/status.png)](https://drone.io/github.com/unicorn/annex/latest)
+[![Gem Version](https://badge.fury.io/rb/annex-cms.png)](http://badge.fury.io/rb/annex-cms) [![Build Status](https://drone.io/github.com/unicorn/annex/status.png)](https://drone.io/github.com/unicorn/annex/latest) [![Code Climate](https://codeclimate.com/github/unicorn/annex.png)](https://codeclimate.com/github/unicorn/annex)
 
 # Annex Gem for Rails 4.x
 
@@ -7,7 +7,7 @@ There are dozens of different Content Management Systems out in the wild, but no
 ## Installation
 Include Annex in your Gemfile and Bundle:
 
-`gem 'annex'`
+`gem 'annex-cms'`
 
 add the engine to routes.rb
 
