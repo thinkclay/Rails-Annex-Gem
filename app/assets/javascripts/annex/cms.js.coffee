@@ -17,6 +17,7 @@ ready = ->
           "save"
         ]
         toolbarFixed: false
+        deniedTags: ['html', 'head', 'body', 'applet']
 
     return
 
