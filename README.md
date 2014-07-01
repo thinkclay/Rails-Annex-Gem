@@ -13,13 +13,15 @@ add the engine to routes.rb
 
 `mount Annex::Engine => '/annex', :as => 'annex'`
 
+### Global Media Inclusion
 For global inclusion, you can add the two assets to your application files:
 
 `*= require annex` in application.css
 
 `//= require annex` in application.js (after jquery)
 
-Or, you can do some authentication logic by adding them to your layout, thus being able to check a role type or the like:
+### Auth Based Media Inclusion
+In many instances, you'll want custom authentication logic to allow editing. By adding them to your layout, you will be able to check a role type or the like:
 
 ```ruby
 - if current_user and current_user.is_admin?
@@ -27,6 +29,18 @@ Or, you can do some authentication logic by adding them to your layout, thus bei
   = javascript_include_tag "annex", "data-turbolinks-track" => true
 ```
 
+***Note***
+You will need to enable a couple setting in `config/environments/production.rb` to get this to work with Heroku's assets:
+
+```ruby
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
+
+  # Generate digests for assets URLs.
+  config.assets.digest = true
+```
+
+### Calling the Annex Helper
 To add a block to a page, simple call the annex_block helper in a view:
 
 `= annex_block :unique_identifier`
