@@ -1,26 +1,24 @@
 require 'active_support/hash_with_indifferent_access'
 
 module Annex
+  #
+  # Create global view helpers
+  #
   module ViewHelpers
+    #
+    # annex_block is a universal helper to render content from
+    # mongodb and display it on the page
+    #
+    # @TODO: implement caching
+    #
     def annex_block(identifier, opts = {})
-      opts[:default] ||= ''
+      opts[:route] ||= current_route
 
-      if opts.try(:route)
-        route = opts[:route]
-        opts[:route].delete
-      else
-        route = current_route
-      end
+      doc = Annex::Block.where(route: opts[:route]).first_or_create
 
-      doc = Annex::Block.where(:route => route.to_s).first_or_create
+      content = doc.content.try(:[], identifier.to_s) || opts[:default]
 
-      if doc.content
-        content = doc.content[identifier.to_s] || opts[:default]
-      else
-        content = opts[:default]
-      end
-
-      render partial: 'annex/block', locals: { content: content, route: route, identifier: identifier, opts: opts }
+      render partial: 'annex/block', locals: { content: content, route: opts[:route], identifier: identifier, opts: opts }
     end
 
     def annex_clips(clip)
