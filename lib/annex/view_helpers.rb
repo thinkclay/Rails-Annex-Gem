@@ -18,11 +18,7 @@ module Annex
 
       content = doc.content.try(:[], identifier.to_s) || opts[:default]
 
-      render partial: 'annex/block', locals: { content: content, route: opts[:route], identifier: identifier, opts: opts }
-    end
-
-    def annex_clips(clip)
-      render partial: 'annex/clips'
+      render partial: 'annex/block', locals: { content: content, identifier: identifier, opts: opts }
     end
 
     def current_route

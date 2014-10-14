@@ -1,4 +1,9 @@
 module Annex
+  #
+  # Block Model
+  #
+  # Stores the raw information in the database
+  #
   class Block
     include Mongoid::Document
     include Mongoid::Timestamps

@@ -8,10 +8,21 @@ ready = ->
 
   # on click of .redactor, fire up a redactor instance
   $("body").on "click", ".redactor", ->
-    unless $(this).hasClass("redactor_editor")
+    unless $(this).hasClass("redactor-editor")
       $(this).redactor
         focus: true
+        imageUpload: '/annex/upload'
+        imageManagerJson: '/annex/upload/images.json'
+        fileUpload: '/annex/upload'
+        fileManagerJson: '/annex/upload/files.json'
         plugins: [
+          "definedlinks"
+          "fontsize"
+          "fontcolor"
+          "table"
+          "filemanager"
+          "imagemanager"
+          "video"
           "clips"
           "fullscreen"
           "save"

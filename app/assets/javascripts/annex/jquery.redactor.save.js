@@ -1,70 +1,69 @@
 if (!RedactorPlugins) var RedactorPlugins = {};
 
-RedactorPlugins.save = {
-  init: function()
-  {
-    this.buttonAdd('save', 'Save', function(){
-      this.saveContent();
-    });
-    this.buttonAddSeparator();
-    this.buttonSetRight('save');
+RedactorPlugins.save = function()
+{
+  return {
+    init: function()
+    {
+      var button = this.button.add('save', 'Save');
+      this.button.addCallback(button, this.save.content);
 
-    save_shortcut = $.proxy(function(e){
-      var editor_active = this.getEditor().hasClass('redactor_editor');
+      save_shortcut = $.proxy(function(e){
+        var editor_active = this.$editor.hasClass('redactor-editor');
 
-      if ( editor_active )
-        this.saveContent();
+        if (editor_active)
+          this.save.content();
 
-      return editor_active;
-    }, this);
+        return editor_active;
+      }, this);
 
-    $(document).keydown(function(e){
-      if ((e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey))
-      {
-        if ( save_shortcut() )
+      $(document).keydown(function(e){
+        if ((e.which == '115' || e.which == '83' ) && (e.ctrlKey || e.metaKey))
         {
-          e.preventDefault();
+          if ( save_shortcut() )
+          {
+            e.preventDefault();
 
-          return false;
+            return false;
+          }
         }
-      }
 
-      return true;
-    });
-  },
-  saveContent: function() {
+        return true;
+      });
+    },
+    content: function() {
+      var post_url = '/annex/blocks',
+          route = this.$editor.attr('data-route'),
+          identifier = this.$editor.attr('data-identifier'),
+          html_content = {};
 
-    var post_url = '/annex/blocks',
-        route = this.getEditor().attr('data-route'),
-        identifier = this.getEditor().attr('data-identifier'),
-        html_content = {};
+      var callback = $.proxy(function() {
+        var $this = this;
+        var editor = this.$editor;
 
-    var callback = $.proxy(function() {
-      var $this = this;
-      var editor = this.getEditor();
+        editor.addClass('saved')
+          .delay(1000)
+          .queue(function(next){
+            $(this).removeClass('saved');
+            next();
+          });
 
-      editor.addClass('saved')
-        .delay(1000)
-        .queue(function(next){
-          $(this).removeClass('saved');
-          next();
-        });
+        setTimeout(function(){ $this.core.destroy(); }, 2000);
+      }, this);
 
-      setTimeout(function(){ $this.destroy(); }, 2000);
-    }, this);
+      html_content[identifier] = this.code.get();
 
-    html_content[identifier] = this.get();
-
-    $.ajax({
-      type:         'POST',
-      url:          post_url,
-      data:         {
-        route: route,
-        content: html_content
-      },
-      success: callback,
-      dataType: 'json'
-    });
-  }
+      $.ajax({
+        type: 'POST',
+        url: post_url,
+        data: {
+          route: route,
+          content: html_content
+        },
+        success: callback,
+        dataType: 'json'
+      });
+    }
+  };
 };
 
