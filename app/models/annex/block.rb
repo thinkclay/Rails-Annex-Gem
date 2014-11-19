@@ -21,6 +21,10 @@ module Annex
 
   when :mongoid
     class Block
+      include Mongoid::Document
+      include Mongoid::Timestamps
+      include Mongoid::Attributes::Dynamic
+
       field :route, type: String
       field :content, type: Hash
 
