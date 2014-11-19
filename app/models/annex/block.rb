@@ -12,12 +12,8 @@ module Annex
       validates_presence_of :route
 
       def self.builder(params)
-        puts params.inspect.red
-
         block = Block.where(route: "#{params[:route]}_#{params[:identifier]}").first_or_create
         block.content = params[:content][params[:identifier].to_sym]
-
-        puts params[:content][params[:identifier].to_sym].inspect.red
 
         return block
       end
