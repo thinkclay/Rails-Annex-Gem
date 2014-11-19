@@ -1,4 +1,3 @@
-//= require annex/cms
 //= require annex/jquery.redactor
 //= require annex/jquery.redactor.definedlinks
 //= require annex/jquery.redactor.fontsize

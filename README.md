@@ -13,7 +13,6 @@ add the engine to routes.rb
 
 `mount Annex::Engine => '/annex', :as => 'annex'`
 
-
 ## Assets
 Annex relies on both custom styles and scripts in order to build the editor.
 These assets can be customized or overridden in your application folder.
@@ -21,9 +20,19 @@ These assets can be customized or overridden in your application folder.
 ### Global Inclusion
 For global inclusion, you can add the two assets to your application files:
 
-`*= require annex` in application.css
+In *application.css* this loads the styles you'll need for the redactor editor.
+They should only interfere with your own application styles minimally.
+```
+*= require annex
+```
 
-`//= require annex` in application.js (after jquery)
+In *application.js* (after jquery) you'll want to drop in *annex* which bootstraps all of the core redactor
+javascript for you, and either include the provided *annex/cms* or copy and override with your own redactor
+configuration settings.
+```
+//= require annex
+//= require annex/cms
+```
 
 ### Auth Based Inclusion
 In many instances, you'll want custom authentication logic to allow editing. By adding them to your layout, you will be able to check a role type or the like:
@@ -32,6 +41,7 @@ In many instances, you'll want custom authentication logic to allow editing. By 
 - if current_user and current_user.is_admin?
   = stylesheet_link_tag "annex", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag "annex", "data-turbolinks-track" => true
+  = javascript_include_tag "annex/cms", "data-turbolinks-track" => true
 ```
 
 ***Note***

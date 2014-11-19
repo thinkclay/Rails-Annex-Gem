@@ -11,10 +11,7 @@ ready = ->
     unless $(this).hasClass("redactor-editor")
       $(this).redactor
         focus: true
-        imageUpload: '/annex/upload'
-        imageManagerJson: '/annex/upload/images.json'
-        fileUpload: '/annex/upload'
-        fileManagerJson: '/annex/upload/files.json'
+        buttonSource: true
         plugins: [
           "definedlinks"
           "fontsize"
@@ -28,19 +25,48 @@ ready = ->
           "save"
         ]
         toolbarFixed: false
-        deniedTags: ['html', 'head', 'body', 'applet']
+        formatting: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+        formattingAdd: [
+          {
+            tag: 'pre'
+            title: 'pre'
+          }
+          {
+            tag: 'code'
+            title: 'code'
+          }
+        ]
 
     return
 
   # on page load, look for texarea.redactor because those will always be CMS mode
   $("textarea.redactor").redactor
     focus: true
+    buttonSource: true
     plugins: [
+      "definedlinks"
+      "fontsize"
+      "fontcolor"
+      "table"
+      "filemanager"
+      "imagemanager"
+      "video"
       "clips"
       "fullscreen"
       "save"
     ]
-    toolbarFixed: false
+    toolbarFixed: true
+    formatting: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    formattingAdd: [
+      {
+        tag: 'pre'
+        title: 'pre'
+      }
+      {
+        tag: 'code'
+        title: 'code'
+      }
+    ]
 
   return
 
