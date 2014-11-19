@@ -82,6 +82,10 @@ module Annex
         @authorize || DEFAULT_AUTHORIZE
       end
 
+      def connect_with(adapter = :activerecord)
+        @adapter = adapter
+      end
+
     end
   end
 end

@@ -5,15 +5,10 @@ module Annex
 
     # POST /annex/blocks
     def create
-      @block = Block.where(:route => params[:route]).first_or_create
-      @block.content ||= {}
-
-      params[:content].keys.each do |key|
-        @block.content[key] = params[:content][key]
-      end
+      @block = Block.builder(params)
 
       if @block.save
-        render json: {status: :success}, status: :ok
+        render json: { status: :success }, status: :ok
       else
         render json: @block.errors, status: :unprocessable_entity
       end

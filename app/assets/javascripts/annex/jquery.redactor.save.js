@@ -57,6 +57,7 @@ RedactorPlugins.save = function()
         type: 'POST',
         url: post_url,
         data: {
+          identifier: identifier,
           route: route,
           content: html_content
         },

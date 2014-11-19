@@ -13,14 +13,19 @@ add the engine to routes.rb
 
 `mount Annex::Engine => '/annex', :as => 'annex'`
 
-### Global Media Inclusion
+
+## Assets
+Annex relies on both custom styles and scripts in order to build the editor.
+These assets can be customized or overridden in your application folder.
+
+### Global Inclusion
 For global inclusion, you can add the two assets to your application files:
 
 `*= require annex` in application.css
 
 `//= require annex` in application.js (after jquery)
 
-### Auth Based Media Inclusion
+### Auth Based Inclusion
 In many instances, you'll want custom authentication logic to allow editing. By adding them to your layout, you will be able to check a role type or the like:
 
 ```ruby
@@ -40,12 +45,24 @@ You will need to enable a couple setting in `config/environments/production.rb` 
   config.assets.digest = true
 ```
 
-### Calling the Annex Helper
+## Settings and Installation
+If you're using ActiveRecord, there is a migration file provided with the gem that will get you going.
+Currently the gem only needs to know whether you want connect with ActiveRecord (default) or Mongoid in an initializer:
+
+```ruby
+Annex::config[:adapter] = :activerecord
+```
+
+## Using the Annex Helper
 To add a block to a page, simple call the annex_block helper in a view:
 
 `= annex_block :unique_identifier`
 
-This will automatically store a record in MongoDB (only database it supports at the moment) with a prefix of the route comprised of locale_controller_action with a secondary lookup in the content column.
+This will automatically store a record in the databese with a prefix of the route
+comprised of locale_controller_action with a secondary lookup in the content column.
+You can also set defaults in case the data doesn't yet exist:
+
+`= annex_block :unique_identifier, default: 'this is my default text'`
 
 
 ## Licenses
