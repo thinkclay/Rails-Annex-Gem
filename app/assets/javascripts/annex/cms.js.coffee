@@ -40,35 +40,34 @@ ready = ->
     return
 
   # on page load, look for texarea.redactor because those will always be CMS mode
-  $("textarea.redactor").redactor
-    focus: true
-    buttonSource: true
-    plugins: [
-      "definedlinks"
-      "fontsize"
-      "fontcolor"
-      "table"
-      "filemanager"
-      "imagemanager"
-      "video"
-      "clips"
-      "fullscreen"
-      "save"
-    ]
-    toolbarFixed: true
-    formatting: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-    formattingAdd: [
-      {
-        tag: 'pre'
-        title: 'pre'
-      }
-      {
-        tag: 'code'
-        title: 'code'
-      }
-    ]
-
-  return
+  if $('textarea.redactor').length > 0
+    $("textarea.redactor").redactor
+      focus: true
+      buttonSource: true
+      plugins: [
+        "definedlinks"
+        "fontsize"
+        "fontcolor"
+        "table"
+        "filemanager"
+        "imagemanager"
+        "video"
+        "clips"
+        "fullscreen"
+        "save"
+      ]
+      toolbarFixed: true
+      formatting: ['p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+      formattingAdd: [
+        {
+          tag: 'pre'
+          title: 'pre'
+        }
+        {
+          tag: 'code'
+          title: 'code'
+        }
+      ]
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
