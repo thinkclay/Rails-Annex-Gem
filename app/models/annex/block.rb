@@ -13,7 +13,7 @@ module Annex
 
       def self.builder(params)
         block = Block.where(route: "#{params[:route]}_#{params[:identifier]}").first_or_create
-        block.content = params[:content][params[:identifier].to_sym]
+        block.content = params.try(:[], params[:content]).try(:[], params[:identifier].to_sym)
 
         return block
       end
