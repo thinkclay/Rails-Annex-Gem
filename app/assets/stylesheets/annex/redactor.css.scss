@@ -14,8 +14,6 @@
 .redactor-box {
   position: relative;
   overflow: visible;
-  background: #fff;
-  margin-bottom: 24px;
 }
 .redactor-box iframe,
 .redactor-box textarea {
@@ -91,7 +89,7 @@ body .redactor-box-fullscreen {
 	Editor
 */
 .redactor-editor {
-  box-shadow: inset 0 0 1px #ebb100;
+  box-shadow: inset 0 0 1px #FDE9AC, 0 0 1px #DBA709;
   transition: box-shadow 1s;
   cursor: text;
   position: relative;
@@ -101,15 +99,12 @@ body .redactor-box-fullscreen {
   outline: none;
   white-space: normal;
   border: 1px solid #eee;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
-  font-size: 14px;
-  line-height: 1.6em;
 }
 .redactor:hover {
-  box-shadow: inset 0 0 1px #ddd;
+  box-shadow: inset 0 0 1px #fff, 0 0 1px #000;
 }
 .redactor-editor.saved {
-  box-shadow: inset 0 0 1px #30D522;
+  box-shadow: inset 0 0 1px #30D522, 0 0 1px #107707;
 }
 .redactor-editor:focus {
   outline: none;
