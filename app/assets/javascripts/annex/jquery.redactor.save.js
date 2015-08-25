@@ -6,6 +6,7 @@ RedactorPlugins.save = function()
     init: function()
     {
       var button = this.button.add('save', 'Save');
+      this.button.setAwesome('save', 'fa-floppy-o');
       this.button.addCallback(button, this.save.content);
 
       save_shortcut = $.proxy(function(e){
@@ -38,17 +39,8 @@ RedactorPlugins.save = function()
           html_content = {};
 
       var callback = $.proxy(function() {
-        var $this = this;
-        var editor = this.$editor;
-
-        editor.addClass('saved')
-          .delay(1000)
-          .queue(function(next){
-            $(this).removeClass('saved');
-            next();
-          });
-
-        setTimeout(function(){ $this.core.destroy(); }, 2000);
+        alert('Saved Content');
+        this.core.destroy();
       }, this);
 
       html_content[identifier] = this.code.get();

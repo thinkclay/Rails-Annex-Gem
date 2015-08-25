@@ -7,26 +7,20 @@
   font-weight: normal;
   font-style: normal;
 }
-
 /*
 	Box
 */
 .redactor-box {
   position: relative;
   overflow: visible;
+  margin-bottom: 24px;
 }
-.redactor-box iframe,
 .redactor-box textarea {
   display: block;
   position: relative;
   margin: 0;
   padding: 0;
   width: 100%;
-}
-.redactor-box iframe {
-  border: 1px solid #eee;
-}
-.redactor-box textarea {
   overflow: auto;
   outline: none;
   border: none;
@@ -34,11 +28,15 @@
   box-shadow: none;
   color: #ccc;
   font-size: 13px;
-  font-family: Menlo, Monaco, monospace, sans-serif;
+  font-family: Menlo, Monaco, monospace, sans-serif !important;
   resize: none;
 }
 .redactor-box textarea:focus {
   outline: none;
+}
+.redactor-editor,
+.redactor-box {
+  background: #fff;
 }
 /*
 	Z-index setup
@@ -46,35 +44,21 @@
 .redactor-editor,
 .redactor-box,
 .redactor-box textarea {
-  z-index: auto !important;
+  z-index: auto;
 }
 .redactor-box-fullscreen {
-  z-index: 1052 !important;
+  z-index: 1051;
 }
-.redactor-toolbar,
+.redactor-toolbar {
+  z-index: 100;
+}
 .redactor-dropdown {
-  z-index: 1050 !important;
+  z-index: 1052;
 }
 #redactor-modal-overlay,
 #redactor-modal-box,
 #redactor-modal {
-  z-index: 1051 !important;
-}
-/*
-	Resize
-*/
-.redactor-resize {
-  background: #f4f4f4;
-  padding: 4px 0 3px 0;
-  cursor: move;
-  border: 1px solid #e3e3e3;
-  border-top: none;
-}
-.redactor-resize div {
-  width: 30px;
-  margin: auto;
-  border-top: 1px solid #bbb;
-  border-bottom: 1px solid #fff;
+  z-index: 1053;
 }
 /*
 	Fullscreen
@@ -86,56 +70,57 @@ body .redactor-box-fullscreen {
   width: 100%;
 }
 /*
+	Utils
+*/
+.redactor-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+/*
 	Editor
 */
 .redactor-editor {
-  box-shadow: inset 0 0 1px #FDE9AC, 0 0 1px #DBA709;
-  transition: box-shadow 1s;
-  cursor: text;
   position: relative;
   overflow: auto;
   margin: 0 !important;
   padding: 20px;
+  min-height: 80px;
   outline: none;
   white-space: normal;
   border: 1px solid #eee;
-}
-.redactor:hover {
-  box-shadow: inset 0 0 1px #fff, 0 0 1px #000;
-}
-.redactor-editor.saved {
-  box-shadow: inset 0 0 1px #30D522, 0 0 1px #107707;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
+  font-size: 14px;
+  line-height: 1.6em;
 }
 .redactor-editor:focus {
   outline: none;
 }
+.toolbar-fixed-box + .redactor-editor {
+  padding-top: 32px !important;
+}
 /*
 	Placeholder
 */
-.redactor-placeholder {
-  position: relative;
-}
 .redactor-placeholder:after {
   position: absolute;
   top: 20px;
   left: 20px;
   content: attr(placeholder);
+  display: block;
+  /* For Firefox */
   color: #999 !important;
   font-weight: normal !important;
-}
-/* Placeholder in linebreaks mode */
-.redactor-linebreaks.redactor-placeholder:after {
-  top: 20px;
-  left: 20px;
 }
 /*
 	Toolbar
 */
 .redactor-toolbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
-  width: 100%;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
@@ -220,6 +205,16 @@ body .redactor-box-fullscreen {
   outline: none;
   background-color: transparent !important;
   cursor: default;
+}
+.redactor-toolbar li a.redactor-button-focus {
+  color: #fff;
+  background: #000;
+}
+/*
+	CodeMirror
+*/
+.redactor-box .CodeMirror {
+  display: none;
 }
 /*
 	Icons
@@ -336,15 +331,12 @@ body .redactor-box-fullscreen {
 .re-gallery:before {
   content: "\e61f";
 }
-.re-save:before {
-  content: "✔";
-}
 /*
 	Toolbar tooltip
 */
 .redactor-toolbar-tooltip {
   position: absolute;
-  z-index: 100;
+  z-index: 1054;
   text-align: center;
   top: 0;
   left: 0;
@@ -352,7 +344,7 @@ body .redactor-box-fullscreen {
   color: #fff;
   padding: 5px 8px;
   line-height: 1;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   font-size: 12px;
   border-radius: 2px;
 }
@@ -370,7 +362,7 @@ body .redactor-box-fullscreen {
   background-color: #fff;
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
   font-size: 14px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   line-height: 1.6em;
 }
 .redactor-dropdown a {
@@ -387,6 +379,23 @@ body .redactor-box-fullscreen {
   background-color: #1f78d8;
   color: #fff !important;
   text-decoration: none;
+}
+.redactor-dropdown a.selected {
+  background-color: #000;
+  color: #fff;
+}
+.redactor-dropdown a.redactor-dropdown-link-inactive,
+.redactor-dropdown a.redactor-dropdown-link-inactive:hover {
+  background: none;
+  cursor: default;
+  color: #000 !important;
+  filter: alpha(opacity=40);
+  -moz-opacity: 0.4;
+  opacity: 0.4;
+}
+.redactor-dropdown a.redactor-dropdown-link-selected {
+  color: #fff;
+  background: #000;
 }
 /*
 	IMAGE BOX
@@ -429,7 +438,7 @@ body .redactor-box-fullscreen {
 */
 .redactor-link-tooltip {
   position: absolute;
-  z-index: 49999;
+  z-index: 99;
   padding: 10px;
   line-height: 1;
   display: inline-block;
@@ -439,7 +448,7 @@ body .redactor-box-fullscreen {
 .redactor-link-tooltip,
 .redactor-link-tooltip a {
   font-size: 12px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
 }
 .redactor-link-tooltip a {
   color: #ccc;
@@ -543,6 +552,7 @@ body .redactor-box-fullscreen {
   overflow-y: auto;
 }
 #redactor-modal {
+  outline: 0;
   position: relative;
   margin: auto;
   margin-bottom: 20px;
@@ -550,7 +560,7 @@ body .redactor-box-fullscreen {
   background: #fff;
   color: #000;
   font-size: 14px !important;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   box-shadow: 0 1px 70px rgba(0, 0, 0, 0.5);
 }
 #redactor-modal header {
@@ -592,7 +602,7 @@ body .redactor-box-fullscreen {
   color: #333;
   width: 100%;
   font-size: 14px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   -moz-transition: border 0.3s ease-in;
   transition: border 0.3s ease-in;
 }
@@ -652,7 +662,7 @@ body .redactor-box-fullscreen {
   padding-left: 0;
   list-style: none;
   max-height: 250px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 #redactor-modal #redactor-modal-list li {
   border-bottom: 1px solid #ddd;
@@ -682,6 +692,11 @@ body .redactor-box-fullscreen {
   font-size: 30px;
   font-weight: 300;
   cursor: pointer;
+  -webkit-appearance: none;
+  padding: 0;
+  border: 0;
+  background: 0;
+  outline: none;
 }
 #redactor-modal-close:hover {
   color: #000;
@@ -699,7 +714,7 @@ body .redactor-box-fullscreen {
   text-decoration: none;
   font-weight: normal;
   font-size: 12px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   line-height: 1;
   cursor: pointer;
 }
@@ -742,17 +757,192 @@ body .redactor-box-fullscreen {
   font-family: monospace, sans-serif;
 }
 .redactor-dropdown .redactor-formatting-h1 {
+  font-size: 36px;
+  line-height: 36px;
   font-weight: bold;
 }
 .redactor-dropdown .redactor-formatting-h2 {
+  font-size: 24px;
+  line-height: 36px;
   font-weight: bold;
 }
 .redactor-dropdown .redactor-formatting-h3 {
+  font-size: 21px;
+  line-height: 30px;
   font-weight: bold;
 }
 .redactor-dropdown .redactor-formatting-h4 {
+  font-size: 18px;
+  line-height: 26px;
   font-weight: bold;
 }
 .redactor-dropdown .redactor-formatting-h5 {
+  font-size: 16px;
+  line-height: 23px;
   font-weight: bold;
+}
+/*
+	##############################################
+
+	 CONTENT STYLES
+
+	##############################################
+*/
+.redactor-editor code,
+.redactor-editor pre {
+  font-family: Menlo, Monaco, monospace, sans-serif !important;
+  cursor: text;
+}
+.redactor-editor div,
+.redactor-editor p,
+.redactor-editor ul,
+.redactor-editor ol,
+.redactor-editor table,
+.redactor-editor dl,
+.redactor-editor blockquote,
+.redactor-editor pre {
+  font-size: 14px;
+  line-height: 1.6em;
+}
+.redactor-editor a {
+  color: #15c;
+  text-decoration: underline;
+}
+.redactor-editor object,
+.redactor-editor embed,
+.redactor-editor video,
+.redactor-editor img {
+  max-width: 100%;
+  width: auto;
+}
+.redactor-editor video,
+.redactor-editor img {
+  height: auto;
+}
+.redactor-editor div,
+.redactor-editor p,
+.redactor-editor ul,
+.redactor-editor ol,
+.redactor-editor table,
+.redactor-editor dl,
+.redactor-editor figure,
+.redactor-editor blockquote,
+.redactor-editor pre {
+  margin: 0;
+  margin-bottom: 15px;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+.redactor-editor iframe,
+.redactor-editor object,
+.redactor-editor hr {
+  margin-bottom: 15px;
+}
+.redactor-editor blockquote {
+  margin-left: 1.6em !important;
+  padding: 0;
+  text-align: left;
+  color: #777;
+  font-style: italic;
+}
+.redactor-editor blockquote:before,
+.redactor-editor blockquote:after {
+  content: '';
+}
+.redactor-editor ul,
+.redactor-editor ol {
+  padding-left: 2em;
+}
+.redactor-editor ul ul,
+.redactor-editor ol ol,
+.redactor-editor ul ol,
+.redactor-editor ol ul {
+  margin: 2px;
+  padding: 0;
+  padding-left: 2em;
+  border: none;
+}
+.redactor-editor ol ol li {
+  list-style-type: lower-alpha;
+}
+.redactor-editor ol ol ol li {
+  list-style-type: lower-roman;
+}
+.redactor-editor dl dt {
+  font-weight: bold;
+}
+.redactor-editor dd {
+  margin-left: 1em;
+}
+.redactor-editor table {
+  border-collapse: collapse;
+  font-size: 1em;
+  width: 100%;
+}
+.redactor-editor table td,
+.redactor-editor table th {
+  padding: 5px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+.redactor-editor table thead td,
+.redactor-editor table th {
+  font-weight: bold;
+  border-bottom-color: #888;
+}
+.redactor-editor code {
+  background-color: #d8d7d7;
+}
+.redactor-editor pre {
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #f8f8f8;
+  font-size: 90%;
+}
+.redactor-editor hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+.redactor-editor h1,
+.redactor-editor h2,
+.redactor-editor h3,
+.redactor-editor h4,
+.redactor-editor h5,
+.redactor-editor h6 {
+  font-weight: bold;
+  color: #000;
+  padding: 0;
+  background: none;
+  text-rendering: optimizeLegibility;
+  margin: 0 0 .5em 0;
+}
+.redactor-editor h1,
+.redactor-editor h2,
+.redactor-editor h3,
+.redactor-editor h4 {
+  line-height: 1.3;
+}
+.redactor-editor h1 {
+  font-size: 36px;
+}
+.redactor-editor h2 {
+  font-size: 24px;
+  margin-bottom: .7em;
+}
+.redactor-editor h3 {
+  font-size: 21px;
+}
+.redactor-editor h4 {
+  font-size: 18px;
+}
+.redactor-editor h5 {
+  font-size: 16px;
+}
+.redactor-editor h6 {
+  font-size: 12px;
+  text-transform: uppercase;
 }

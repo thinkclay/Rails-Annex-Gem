@@ -1,13 +1,6 @@
 ready = ->
-  post_url = "/annex/blocks"
-
-  # cmd+s saves the editor contents
-  $(window).keydown (e) ->
-    $(".redactor").addClass "active"  if (e.which is "17") and (e.ctrlKey or e.metaKey)
-    return
-
   # on click of .redactor, fire up a redactor instance
-  $("body").on "click", ".redactor", ->
+  $("body").on "dblclick", ".redactor", ->
     unless $(this).hasClass("redactor-editor")
       $(this).redactor
         focus: true
