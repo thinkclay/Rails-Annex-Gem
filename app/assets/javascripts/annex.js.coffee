@@ -7,5 +7,8 @@
 //= require annex/jquery.redactor.imagemanager
 //= require annex/jquery.redactor.video
 //= require annex/jquery.redactor.clips
-//= require annex/jquery.redactor.fullscreen
+//= require annex/jquery.redactor.uploadcare
 //= require annex/jquery.redactor.save
+//= require annex/cms
+
+UPLOADCARE_LOCALE = 'en';

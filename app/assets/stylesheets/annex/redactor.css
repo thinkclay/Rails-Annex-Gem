@@ -27,7 +27,6 @@
   background-color: #111;
   box-shadow: none;
   color: #ccc;
-  font-size: 13px;
   font-family: Menlo, Monaco, monospace, sans-serif !important;
   resize: none;
 }
@@ -91,8 +90,6 @@ body .redactor-box-fullscreen {
   outline: none;
   white-space: normal;
   border: 1px solid #eee;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
-  font-size: 14px;
   line-height: 1.6em;
 }
 .redactor-editor:focus {
@@ -112,7 +109,6 @@ body .redactor-box-fullscreen {
   display: block;
   /* For Firefox */
   color: #999 !important;
-  font-weight: normal !important;
 }
 /*
 	Toolbar
@@ -124,7 +120,6 @@ body .redactor-box-fullscreen {
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
-  font-size: 14px !important;
   line-height: 1 !important;
   background: #fff;
   border: none;
@@ -344,8 +339,6 @@ body .redactor-box-fullscreen {
   color: #fff;
   padding: 5px 8px;
   line-height: 1;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
-  font-size: 12px;
   border-radius: 2px;
 }
 /*
@@ -361,8 +354,6 @@ body .redactor-box-fullscreen {
   overflow: auto;
   background-color: #fff;
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.25);
-  font-size: 14px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   line-height: 1.6em;
 }
 .redactor-dropdown a {
@@ -417,7 +408,6 @@ body .redactor-box-fullscreen {
   line-height: 1;
   background-color: #000;
   color: #fff;
-  font-size: 11px;
   padding: 7px 10px;
   cursor: pointer;
 }
@@ -445,11 +435,7 @@ body .redactor-box-fullscreen {
   background-color: #000;
   color: #555 !important;
 }
-.redactor-link-tooltip,
-.redactor-link-tooltip a {
-  font-size: 12px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
-}
+
 .redactor-link-tooltip a {
   color: #ccc;
   margin: 0 5px;
@@ -475,7 +461,6 @@ body .redactor-box-fullscreen {
 }
 #redactor-droparea-placeholder {
   text-align: center;
-  font-size: 12px;
   color: rgba(0, 0, 0, 0.7);
 }
 /*
@@ -559,14 +544,10 @@ body .redactor-box-fullscreen {
   padding: 0;
   background: #fff;
   color: #000;
-  font-size: 14px !important;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   box-shadow: 0 1px 70px rgba(0, 0, 0, 0.5);
 }
 #redactor-modal header {
   padding: 30px 40px 5px 40px;
-  font-size: 18px;
-  font-weight: bold;
 }
 #redactor-modal section {
   padding: 30px 40px 50px 40px;
@@ -601,8 +582,6 @@ body .redactor-box-fullscreen {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset;
   color: #333;
   width: 100%;
-  font-size: 14px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   -moz-transition: border 0.3s ease-in;
   transition: border 0.3s ease-in;
 }
@@ -633,7 +612,6 @@ body .redactor-box-fullscreen {
 */
 #redactor-modal-tabber {
   margin-bottom: 15px;
-  font-size: 12px;
 }
 #redactor-modal-tabber a {
   border: 1px solid #ddd;
@@ -674,7 +652,6 @@ body .redactor-box-fullscreen {
   padding: 10px 5px;
   color: #000;
   text-decoration: none;
-  font-size: 13px;
   display: block;
   position: relative;
 }
@@ -712,9 +689,6 @@ body .redactor-box-fullscreen {
   color: #000;
   text-align: center;
   text-decoration: none;
-  font-weight: normal;
-  font-size: 12px;
-  font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif !important;
   line-height: 1;
   cursor: pointer;
 }
@@ -755,194 +729,4 @@ body .redactor-box-fullscreen {
 }
 .redactor-dropdown .redactor-formatting-pre {
   font-family: monospace, sans-serif;
-}
-.redactor-dropdown .redactor-formatting-h1 {
-  font-size: 36px;
-  line-height: 36px;
-  font-weight: bold;
-}
-.redactor-dropdown .redactor-formatting-h2 {
-  font-size: 24px;
-  line-height: 36px;
-  font-weight: bold;
-}
-.redactor-dropdown .redactor-formatting-h3 {
-  font-size: 21px;
-  line-height: 30px;
-  font-weight: bold;
-}
-.redactor-dropdown .redactor-formatting-h4 {
-  font-size: 18px;
-  line-height: 26px;
-  font-weight: bold;
-}
-.redactor-dropdown .redactor-formatting-h5 {
-  font-size: 16px;
-  line-height: 23px;
-  font-weight: bold;
-}
-/*
-	##############################################
-
-	 CONTENT STYLES
-
-	##############################################
-*/
-.redactor-editor code,
-.redactor-editor pre {
-  font-family: Menlo, Monaco, monospace, sans-serif !important;
-  cursor: text;
-}
-.redactor-editor div,
-.redactor-editor p,
-.redactor-editor ul,
-.redactor-editor ol,
-.redactor-editor table,
-.redactor-editor dl,
-.redactor-editor blockquote,
-.redactor-editor pre {
-  font-size: 14px;
-  line-height: 1.6em;
-}
-.redactor-editor a {
-  color: #15c;
-  text-decoration: underline;
-}
-.redactor-editor object,
-.redactor-editor embed,
-.redactor-editor video,
-.redactor-editor img {
-  max-width: 100%;
-  width: auto;
-}
-.redactor-editor video,
-.redactor-editor img {
-  height: auto;
-}
-.redactor-editor div,
-.redactor-editor p,
-.redactor-editor ul,
-.redactor-editor ol,
-.redactor-editor table,
-.redactor-editor dl,
-.redactor-editor figure,
-.redactor-editor blockquote,
-.redactor-editor pre {
-  margin: 0;
-  margin-bottom: 15px;
-  border: none;
-  background: none;
-  box-shadow: none;
-}
-.redactor-editor iframe,
-.redactor-editor object,
-.redactor-editor hr {
-  margin-bottom: 15px;
-}
-.redactor-editor blockquote {
-  margin-left: 1.6em !important;
-  padding: 0;
-  text-align: left;
-  color: #777;
-  font-style: italic;
-}
-.redactor-editor blockquote:before,
-.redactor-editor blockquote:after {
-  content: '';
-}
-.redactor-editor ul,
-.redactor-editor ol {
-  padding-left: 2em;
-}
-.redactor-editor ul ul,
-.redactor-editor ol ol,
-.redactor-editor ul ol,
-.redactor-editor ol ul {
-  margin: 2px;
-  padding: 0;
-  padding-left: 2em;
-  border: none;
-}
-.redactor-editor ol ol li {
-  list-style-type: lower-alpha;
-}
-.redactor-editor ol ol ol li {
-  list-style-type: lower-roman;
-}
-.redactor-editor dl dt {
-  font-weight: bold;
-}
-.redactor-editor dd {
-  margin-left: 1em;
-}
-.redactor-editor table {
-  border-collapse: collapse;
-  font-size: 1em;
-  width: 100%;
-}
-.redactor-editor table td,
-.redactor-editor table th {
-  padding: 5px;
-  border: 1px solid #ddd;
-  vertical-align: top;
-}
-.redactor-editor table thead td,
-.redactor-editor table th {
-  font-weight: bold;
-  border-bottom-color: #888;
-}
-.redactor-editor code {
-  background-color: #d8d7d7;
-}
-.redactor-editor pre {
-  padding: 1em;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  background: #f8f8f8;
-  font-size: 90%;
-}
-.redactor-editor hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-}
-.redactor-editor h1,
-.redactor-editor h2,
-.redactor-editor h3,
-.redactor-editor h4,
-.redactor-editor h5,
-.redactor-editor h6 {
-  font-weight: bold;
-  color: #000;
-  padding: 0;
-  background: none;
-  text-rendering: optimizeLegibility;
-  margin: 0 0 .5em 0;
-}
-.redactor-editor h1,
-.redactor-editor h2,
-.redactor-editor h3,
-.redactor-editor h4 {
-  line-height: 1.3;
-}
-.redactor-editor h1 {
-  font-size: 36px;
-}
-.redactor-editor h2 {
-  font-size: 24px;
-  margin-bottom: .7em;
-}
-.redactor-editor h3 {
-  font-size: 21px;
-}
-.redactor-editor h4 {
-  font-size: 18px;
-}
-.redactor-editor h5 {
-  font-size: 16px;
-}
-.redactor-editor h6 {
-  font-size: 12px;
-  text-transform: uppercase;
 }

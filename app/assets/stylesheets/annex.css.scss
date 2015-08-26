@@ -21,3 +21,26 @@
     box-shadow: inset 0 0 1px rgba(0, 0, 0, .5);
   }
 }
+
+.redactor-editor, .redactor-box {
+  background: transparent;
+}
+
+.redactor-toolbar li a {
+  font-size: 13px;
+}
+
+#cms-tools {
+  background: #fff;
+  box-shadow: 0 -.1em .5em rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+
+  ul {
+    border: none;
+    left: 50%;
+    margin-left: -25% !important;
+  }
+}
